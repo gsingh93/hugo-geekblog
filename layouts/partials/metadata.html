@@ -10,11 +10,6 @@
   </span>
 </span>
 
-<span class="flex align-center no-wrap">
-  <svg class="gblog-icon gblog_timer"><use xlink:href="#gblog_timer"></use></svg>
-  <span class="gblog-post__tag">{{ .ReadingTime }} min read</span>
-</span>
-
 {{ if eq .Params.weight 1 }}
   <span class="flex align-center no-wrap">
     <svg class="gblog-icon gblog_pin"><use xlink:href="#gblog_pin"></use></svg>
@@ -44,6 +39,7 @@
 
 {{ $tc := 0 }}
 {{ with .Params.tags }}
+<span class="flex align-center no-wrap">
   {{ range sort . }}
     {{ $name := . }}
     {{ with $.Site.GetPage (printf "/tags/%s" $name | urlize) }}
@@ -60,6 +56,7 @@
     {{ end }}
     {{ $tc = (add $tc 1) }}
   {{ end }}
+</span>
 {{ end }}
 
 {{ define "post-tag" }}
